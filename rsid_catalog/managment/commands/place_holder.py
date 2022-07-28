@@ -3,5 +3,5 @@ from notes.models import notes
 
 
 class Command(BaseCommand):
-    help = 'place holder managment command'
+    help = "place holder managment command"
     pass

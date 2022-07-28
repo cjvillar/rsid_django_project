@@ -2,4 +2,4 @@ from django.apps import AppConfig
 
 
 class RsidsConfig(AppConfig):
-    name = 'rsid_catalog'
+    name = "rsid_catalog"

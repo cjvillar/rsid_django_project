@@ -7,18 +7,18 @@ import jsonfield.fields
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('rsid_catalog', '0003_auto_20220727_1809'),
+        ("rsid_catalog", "0003_auto_20220727_1809"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='rsids',
-            name='diseases',
+            model_name="rsids",
+            name="diseases",
             field=jsonfield.fields.JSONField(),
         ),
         migrations.AlterField(
-            model_name='rsids',
-            name='gene',
+            model_name="rsids",
+            name="gene",
             field=jsonfield.fields.JSONField(),
         ),
     ]

@@ -9,18 +9,23 @@ class Migration(migrations.Migration):
 
     dependencies = [
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
-        ('rsid_catalog', '0001_initial'),
+        ("rsid_catalog", "0001_initial"),
     ]
 
     operations = [
         migrations.RemoveField(
-            model_name='notes',
-            name='user',
+            model_name="notes",
+            name="user",
         ),
         migrations.AddField(
-            model_name='rsids',
-            name='user',
-            field=models.ForeignKey(default=1, on_delete=django.db.models.deletion.CASCADE, related_name='rsid', to=settings.AUTH_USER_MODEL),
+            model_name="rsids",
+            name="user",
+            field=models.ForeignKey(
+                default=1,
+                on_delete=django.db.models.deletion.CASCADE,
+                related_name="rsid",
+                to=settings.AUTH_USER_MODEL,
+            ),
             preserve_default=False,
         ),
     ]
