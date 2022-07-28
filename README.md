@@ -2,8 +2,7 @@
 A simple Django project.
 
 ## get started
-- python3 -m venv .
-- source ./bin/activate
+- source ./bin/activate. 
 - pip install -r requirements.txt
 - python manage.py runserver
 
