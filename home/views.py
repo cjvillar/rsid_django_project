@@ -2,6 +2,7 @@ from re import T
 from django.shortcuts import render
 from django.http import HttpResponse
 from datetime import datetime
+from django.urls import reverse_lazy
 #from django.contrib.auth.decorators import login_required
 from django.views.generic import TemplateView
 from django.views.generic.edit import CreateView
@@ -17,11 +18,12 @@ from rsid_catalog.models import User
 class SignupView(CreateView):
     form_class = UserCreationForm
     template_name = 'home/register.html'
-    success_url = '/home'
-
+    success_url = '/login'
+    
+    
     def get(self, request, *args, **kwargs):
         if self.request.user.is_authenticated:
-            return redirect('rsids.list')
+            return redirect('/home')
         return super().get(request, *args, **kwargs)
 
 class LoginInterfaceView(LoginView):
