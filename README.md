@@ -1,6 +1,7 @@
 # rsid_django_project
 A simple Django project.
 
+![Unit test](https://github.com/cjvillar/rsid_django_project/actions/workflows/run_django_test.yml/badge.svg)
 ## get started
 - source ./bin/activate. 
 - pip install -r requirements.txt
