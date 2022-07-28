@@ -14,11 +14,12 @@ This projet is focused on Django and the variant data are just used for example 
 - Create user http://127.0.0.1:8000/signup
 
 ### Populate DB
-`
-python rsid_search/scripts/litvar_api.py rs12516 <username>
-python rsid_search/scripts/litvar_api.py rs80356921 <username>
-python rsid_search/scripts/litvar_api.py rs8179066 <username>
-`
+
+- python rsid_search/scripts/litvar_api.py rs12516 <username>
+> This code hits the https://www.ncbi.nlm.nih.gov/research/bionlp/litvar/api/v1/entity/litvar/ API. Thanks NCBI! 
+
+Try these: rs80356921, rs8179066
+
 ### API
 API access via cmnd line:
 http -a admin:admin http://127.0.0.1:8000/variants/api/v1/rsid
