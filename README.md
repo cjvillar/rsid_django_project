@@ -1,5 +1,6 @@
-# rsid_django_project
-A simple Django project.
+# rsid_django_project (name subject to change)
+A simple Django project to expand upon and explore all the features that django offers.
+This projet is focused on Django and the variant data are just used for example data.
 
 ![Unit test](https://github.com/cjvillar/rsid_django_project/actions/workflows/run_django_test.yml/badge.svg)
 ## get started
