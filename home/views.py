@@ -11,12 +11,13 @@ from django.contrib.auth.views import LoginView, LogoutView
 from django.shortcuts import redirect
 from rsid_catalog.models import User
 
+
 # Create your views here.
 
 class SignupView(CreateView):
     form_class = UserCreationForm
     template_name = 'home/register.html'
-    success_url = '/rsid_search'
+    success_url = '/home'
 
     def get(self, request, *args, **kwargs):
         if self.request.user.is_authenticated:
