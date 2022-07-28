@@ -3,6 +3,8 @@ A simple Django project to expand upon and explore all the features that django 
 This projet is focused on Django and the variant data are just used for example data.
 
 ![Unit test](https://github.com/cjvillar/rsid_django_project/actions/workflows/run_django_test.yml/badge.svg)
+![Python Formatting](https://github.com/cjvillar/rsid_django_project/actions/workflows/black_format.yml/badge.svg?branch=main)
+## get started
 ## get started
 - source ./bin/activate. 
 - pip install -r requirements.txt
