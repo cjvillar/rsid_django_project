@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+{% block content %}
+{% load rsid_extras %}
+<style>
+    .table {
+        border-collapse: collapse;
+        width: 100%;
+        overflow: hidden;
+        
+    }
+      
+    .th, .td {
+        text-align: left;
+        width: 100px;
+        overflow: hidden;
+        
+    }
+      
+    .tr:nth-child(odd) {
+        background-color: rgb(160, 240, 160);
+        width: 100px;
+        overflow: hidden;
+    }
+</style>
+    <h1>Your cataloged rsID's: </h1>
+            <table class="table">
+                        <tr class="tr">
+                            <th class="th">rsID</th>
+                            <th class="th">Gene</th>
+                            <th class="th">Disease</th>
+                        </tr>
+            </table>            
+            {% for rsid in rsids %}
+            <table class="table">
+                        <tr>
+                            <td class="td">
+                            <a href="{% url 'rsid.detail' pk=rsid.id %}" class="text-dark text-decoration-non">{{rsid.rs_id }}</a>
+                            </td>
+                            <td class="td"> {{ rsid.gene | get_value:rsid.gene.name }}</td>
+                            <td class="td">{% if rsid.diseases == '{}' %} <a style="color : red;">None available.</a> {% else %} {{rsid.diseases | make_list|slice:'1:20'|join:''}} {% endif %}</td>
+                        </tr>
+            </table>   
+            {% empty %}
+            <p style="color : red;">No rsID's available.</p>  
+            {% endfor %}   
+{% endblock %}
+
+
+

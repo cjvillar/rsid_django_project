@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block content %}
+    <h1>Welcome, {{user.username}}! </h1>
+    <p>Last Login: {{user.last_login}}</p>
+   
+        <a href="{% url 'rsid.list' %}" class="btn btn-secondary m-1">Go to your variants catalog</a>  
+        <a href="{% url 'rsid.new' %}" class="btn btn-secondary m-1">Create</a>
+        <a href="{% url 'api' %}" class="btn btn btn-secondary me-1">API</a>
+  
+{% endblock %}

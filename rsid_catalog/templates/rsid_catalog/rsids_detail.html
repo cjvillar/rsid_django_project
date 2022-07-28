@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="border round">
+    <h1 class="my-5">{{rsid.rs_id}}</h1>
+    <p>{{rsid.gene}}</p>
+    <p>{{rsid.diseases}}</p>
+</div>
+<a href="{% url 'rsid.list' %}" class="btn btn-secondary">Back</a>
+<a href="{% url 'rsid.update' pk=rsid.id %}" class="btn btn-secondary">Edit</a>
+<a href="{% url 'rsid.delete' pk=rsid.id %}" class="btn btn-danger">Delete</a>
+
+{% endblock %}

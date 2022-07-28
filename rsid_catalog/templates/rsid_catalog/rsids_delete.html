@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block content %}
+   <form method="POST">{% csrf_token %}
+        <p>Are you sure you want to delete "{{rsids.rs_id}}"?</p>
+        <p>This action can't be undone</p>
+        <input type="submit" class="btn btn-danger" value="Confirm"/>
+        <a href="{% url 'rsid.detail' pk=rsids.id %}" class="btn btn-secondary">Cancel</a>
+   </form>
+{% endblock %}
