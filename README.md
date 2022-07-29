@@ -15,6 +15,7 @@ This projet is focused on Django and the variant data are just used for example 
 
 ### Populate DB
 
+- Changed path in rsid_search/scripts/litvar_api.py to local location of repo
 - python rsid_search/scripts/litvar_api.py rs12516 username
 > This code hits the https://www.ncbi.nlm.nih.gov/research/bionlp/litvar/api/v1/entity/litvar/ API. Thanks NCBI! 
 
