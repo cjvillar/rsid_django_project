@@ -27,3 +27,8 @@ http -a admin:admin http://127.0.0.1:8000/variants/api/v1/rsid
 
 Browser: http://127.0.0.1:8000/variants/api/v1/rsid
 
+## Contributing
+Please join us in the fun! Pull requests are welcome. For major changes, please open an issue/ticket on our [Project](https://github.com/orgs/the-metadata-dog/projects?type=new) to discuss what you would like to change.
+
+
+
