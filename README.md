@@ -5,6 +5,7 @@ This projet is focused on Django and the variant data are just used for example 
 ![Unit test](https://github.com/cjvillar/rsid_django_project/actions/workflows/run_django_test.yml/badge.svg)
 ![Python Formatting](https://github.com/cjvillar/rsid_django_project/actions/workflows/black_format.yml/badge.svg?branch=main)
 
+![Metadata Dogs GitHub stats](https://github-readme-stats.vercel.app/api?username=cjvillar&show_icons=true&theme=synthwave)
 
 ## get started
 - python -m venv . 
