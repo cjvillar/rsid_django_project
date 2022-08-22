@@ -25,7 +25,6 @@ def rs_from_file(rs_ids):
         
 def litvar_url(rs_list, username):
     user = User.objects.get(username=username)
-    print(rs_list)
     for rs_id in rs_list:
         url = "https://www.ncbi.nlm.nih.gov/research/bionlp/litvar/api/v1/entity/litvar/{}%23%23".format(
             rs_id
@@ -56,5 +55,5 @@ if __name__ == '__main__':
     username = arguments.username
     rs_ids = arguments.rs_list
     rs_list = rs_from_file(rs_ids)
-    print(litvar_url(rs_list , username))
+    litvar_url(rs_list , username)
    
