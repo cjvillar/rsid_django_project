@@ -40,8 +40,6 @@
                             <a href="{% url 'rsid.detail' pk=rsid.id %}" class="text-dark text-decoration-non">{{rsid.rs_id }}</a>
                             </td>
                             <td class="td"> {{ rsid.gene.name }}</td>
-                            <!-- <td class="td">{% if rsid.diseases == '{}' %} <a style="color : red;">None available.</a> 
-                                {% else %} {{rsid.diseases | make_list|slice:'1:20'|join:''}} {% endif %}</td> -->
                             <td class="td">{% if not rsid.diseases %} <a style="color : red;">None available.</a> 
                                     {% else %} {% for disease in rsid.diseases%} 
                                     <li>{{ disease }}</li>
