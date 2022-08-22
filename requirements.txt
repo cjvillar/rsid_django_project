@@ -3,7 +3,7 @@ attrs==21.4.0
 certifi==2022.6.15
 charset-normalizer==2.1.0
 distlib==0.3.5
-Django==3.0
+Django==3.1.14
 djangorestframework==3.13.1
 filelock==3.7.1
 idna==3.3
