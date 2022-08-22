@@ -5,8 +5,10 @@
 <style>
     .table {
         border-collapse: collapse;
-        width: 100%;
+        width: 80%;
         overflow: hidden;
+        margin-left: auto;
+        margin-right: auto;
         
     }
       
@@ -37,8 +39,14 @@
                             <td class="td">
                             <a href="{% url 'rsid.detail' pk=rsid.id %}" class="text-dark text-decoration-non">{{rsid.rs_id }}</a>
                             </td>
-                            <td class="td"> {{ rsid.gene | get_value:rsid.gene.name }}</td>
-                            <td class="td">{% if rsid.diseases == '{}' %} <a style="color : red;">None available.</a> {% else %} {{rsid.diseases | make_list|slice:'1:20'|join:''}} {% endif %}</td>
+                            <td class="td"> {{ rsid.gene.name }}</td>
+                            <!-- <td class="td">{% if rsid.diseases == '{}' %} <a style="color : red;">None available.</a> 
+                                {% else %} {{rsid.diseases | make_list|slice:'1:20'|join:''}} {% endif %}</td> -->
+                            <td class="td">{% if not rsid.diseases %} <a style="color : red;">None available.</a> 
+                                    {% else %} {% for disease in rsid.diseases%} 
+                                    <li>{{ disease }}</li>
+                                    {% endfor %}
+                                    {% endif %}</td>    
                         </tr>
             </table>   
             {% empty %}
