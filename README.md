@@ -1,9 +1,14 @@
 # rsid_django_project (name subject to change)
 A simple Django project to expand upon and explore all the features that django offers.
-This projet is focused on Django and the variant data are just used for example data.
+So far, this project is focused on Django and the variant data are not used for anything important.
 
 ![Unit test](https://github.com/cjvillar/rsid_django_project/actions/workflows/run_django_test.yml/badge.svg)
 ![Python Formatting](https://github.com/cjvillar/rsid_django_project/actions/workflows/black_format.yml/badge.svg?branch=main)
+
+![usage](https://user-images.githubusercontent.com/20974239/186051742-6ac405a0-78b5-43e5-87e8-3bc7d410d3b5.gif)
+
+
+
 
 
 ## get started
