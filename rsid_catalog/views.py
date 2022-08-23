@@ -1,17 +1,17 @@
 from curses.ascii import CR, RS
-from django.shortcuts import render
-from django.http import Http404
-from django.http.response import HttpResponseRedirect, HttpResponse
-from django.views.generic import DetailView, ListView, CreateView, UpdateView
-from django.views.generic.edit import DeleteView
-from .forms import RsidsForm
+
 from django.contrib.auth.mixins import LoginRequiredMixin
-from .serializers import RsidsSerializer
-from rest_framework.generics import ListAPIView
+from django.http import Http404
+from django.http.response import HttpResponse, HttpResponseRedirect
+from django.shortcuts import render
+from django.views.generic import CreateView, DetailView, ListView, UpdateView
+from django.views.generic.edit import DeleteView, FormView
 from rest_framework import permissions
+from rest_framework.generics import ListAPIView
 
-
+from .forms import RsidsForm, UploadFileForm
 from .models import Rsids
+from .serializers import RsidsSerializer
 
 
 class RsidDeleteView(DeleteView):
@@ -50,7 +50,6 @@ class RsidListView(LoginRequiredMixin, ListView):
     def get_queryset(self):
         return self.request.user.rsids.all()
 
-
 class RsidDetailView(DetailView):
     model = Rsids
     context_object_name = "rsid"
@@ -72,3 +71,20 @@ class RsidApiList(ListAPIView):
     queryset = Rsids.objects.all()
     serializer_class = RsidsSerializer
     permission_classes = [permissions.IsAuthenticated]
+
+class VariantFile(FormView):
+    form_class = UploadFileForm
+    template_name = '^VariantFile/$'  # Replace with your template.
+    success_url = 'rsid_catalog/templates/rsid_catalog/rsids_list.html'  # Replace with your URL or reverse().
+
+    def post(self, request, *args, **kwargs):
+        form_class = self.get_form_class()
+        form = self.get_form(form_class)
+        files = request.FILES.getlist('file_field')
+        if form.is_valid():
+            form = "success"
+            # for f in files:
+            #     ...  # Do something with each file.
+            return self.form_valid(form)
+        else:
+            return self.form_invalid(form)

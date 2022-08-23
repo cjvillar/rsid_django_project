@@ -1,18 +1,17 @@
-from re import T
-from django.shortcuts import render
-from django.http import HttpResponse
 from datetime import datetime
-from django.urls import reverse_lazy
+from re import T
 
-# from django.contrib.auth.decorators import login_required
-from django.views.generic import TemplateView
-from django.views.generic.edit import CreateView
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.views import LoginView, LogoutView
-from django.shortcuts import redirect
-from rsid_catalog.models import User
+from django.http import HttpResponse
+from django.shortcuts import redirect, render
+from django.urls import reverse_lazy
+# from django.contrib.auth.decorators import login_required
+from django.views.generic import TemplateView
+from django.views.generic.edit import CreateView
 
+from rsid_catalog.models import User
 
 # Create your views here.
 

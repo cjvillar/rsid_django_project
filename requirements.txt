@@ -25,3 +25,4 @@ tomli==2.0.1
 urllib3==1.26.11
 virtualenv==20.15.1
 virtualenv-clone==0.5.7
+isort==5.10.1

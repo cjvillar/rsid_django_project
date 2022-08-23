@@ -1,4 +1,7 @@
-from django.urls import path, include
+from distutils.command.upload import upload
+
+from django.urls import include, path
+
 from . import views
 
 # from rest_framework import routers
@@ -13,4 +16,6 @@ urlpatterns = [
     path("rsid/<int:pk>/delete", views.RsidDeleteView.as_view(), name="rsid.delete"),
     path("rsid/new", views.RsidCreateView.as_view(), name="rsid.new"),
     path("api/v1/rsid", views.RsidApiList.as_view(), name="api"),
+    path("^VariantFile/$", views.VariantFile.as_view(), name="VariantFile")
+
 ]

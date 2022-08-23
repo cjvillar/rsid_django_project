@@ -26,6 +26,17 @@
     }
 </style>
     <h1>Your cataloged rsID's: </h1>
+    <form action="{% url 'VariantFile' %}" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <p>
+            {{ form.file }}
+        </p>
+        <p>
+            <button class="btn btn-outline-dark me-1" onclick="document.getElementById('uploadFile').click()">Upload Variants File</button>
+            <input type="file" id="uploadFile" style="display:none"/>
+        </p>
+  
+    </form>
             <table class="table">
                         <tr class="tr">
                             <th class="th">rsID</th>

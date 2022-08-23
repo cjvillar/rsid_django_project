@@ -1,8 +1,9 @@
 from turtle import title
+
+from django.contrib.auth.models import User
 from django.test import TestCase
 
 from rsid_catalog.models import Rsids
-from django.contrib.auth.models import User
 
 RSID = "rs12345"
 GENE = {"id": 672, "name": "BRCA1"}
