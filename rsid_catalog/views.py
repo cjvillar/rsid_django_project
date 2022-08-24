@@ -1,18 +1,23 @@
+from ast import Return
 from curses.ascii import CR, RS
+from http.client import HTTPResponse
+from urllib.request import Request
 
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.http import Http404
-from django.http.response import HttpResponse, HttpResponseRedirect
+from django.http import Http404, HttpResponse
+from django.http.response import HttpResponseRedirect, FileResponse
 from django.shortcuts import render
 from django.views.generic import CreateView, DetailView, ListView, UpdateView
 from django.views.generic.edit import DeleteView, FormView
 from rest_framework import permissions
 from rest_framework.generics import ListAPIView
 
-from .forms import RsidsForm, UploadFileForm
-from .models import Rsids
+from .forms import RsidsForm ,UploadFileForm
+from .models import Rsids, User
 from .serializers import RsidsSerializer
-
+from rsid_search.scripts import litvar_api
+from subprocess import run, PIPE
+import sys
 
 class RsidDeleteView(DeleteView):
     model = Rsids
@@ -72,19 +77,18 @@ class RsidApiList(ListAPIView):
     serializer_class = RsidsSerializer
     permission_classes = [permissions.IsAuthenticated]
 
-class VariantFile(FormView):
-    form_class = UploadFileForm
-    template_name = '^VariantFile/$'  # Replace with your template.
-    success_url = 'rsid_catalog/templates/rsid_catalog/rsids_list.html'  # Replace with your URL or reverse().
 
-    def post(self, request, *args, **kwargs):
-        form_class = self.get_form_class()
-        form = self.get_form(form_class)
-        files = request.FILES.getlist('file_field')
+
+def upload_file(request):
+    if request.method == 'POST':
+        form = UploadFileForm(request.POST, request.FILES)
+        file = request.FILES['file']
         if form.is_valid():
-            form = "success"
-            # for f in files:
-            #     ...  # Do something with each file.
-            return self.form_valid(form)
-        else:
-            return self.form_invalid(form)
+            out = run([sys.executable, "rsid_search/scripts/litvar_api.py", file, User],shell=False,stdout=PIPE)
+            
+    
+            return HttpResponse("THIS FILE: " + str(request.FILES['file']))
+    else:
+        print(form._errors)
+        form = UploadFileForm()
+    return render(request, 'list', {'form': form})

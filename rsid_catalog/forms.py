@@ -1,12 +1,10 @@
 import re
 from dataclasses import field
 from xml.dom import ValidationErr
-
 from django import forms
 from django.core.exceptions import ValidationError
 
 from .models import Rsids
-
 
 class RsidsForm(forms.ModelForm):
     class Meta:

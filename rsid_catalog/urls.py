@@ -1,7 +1,7 @@
 from distutils.command.upload import upload
-
+from django.conf import settings
 from django.urls import include, path
-
+from django.conf.urls.static import static
 from . import views
 
 # from rest_framework import routers
@@ -16,6 +16,5 @@ urlpatterns = [
     path("rsid/<int:pk>/delete", views.RsidDeleteView.as_view(), name="rsid.delete"),
     path("rsid/new", views.RsidCreateView.as_view(), name="rsid.new"),
     path("api/v1/rsid", views.RsidApiList.as_view(), name="api"),
-    path("^VariantFile/$", views.VariantFile.as_view(), name="VariantFile")
-
-]
+    path('list/', views.upload_file, name="list")
+] + static(settings.STATIC_URL,document_root=settings.STATIC_ROOT)
