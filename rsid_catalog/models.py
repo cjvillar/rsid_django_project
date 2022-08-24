@@ -1,7 +1,9 @@
 from operator import mod
-from django.db import models
+
 from django.contrib.auth.models import User
+from django.db import models
 from jsonfield import JSONField
+
 
 # Create your models here.
 class Rsids(models.Model):

@@ -1,18 +1,23 @@
+from ast import Return
 from curses.ascii import CR, RS
-from django.shortcuts import render
-from django.http import Http404
-from django.http.response import HttpResponseRedirect, HttpResponse
-from django.views.generic import DetailView, ListView, CreateView, UpdateView
-from django.views.generic.edit import DeleteView
-from .forms import RsidsForm
+from http.client import HTTPResponse
+from urllib.request import Request
+
 from django.contrib.auth.mixins import LoginRequiredMixin
-from .serializers import RsidsSerializer
-from rest_framework.generics import ListAPIView
+from django.http import Http404, HttpResponse
+from django.http.response import HttpResponseRedirect, FileResponse
+from django.shortcuts import render
+from django.views.generic import CreateView, DetailView, ListView, UpdateView
+from django.views.generic.edit import DeleteView, FormView
 from rest_framework import permissions
+from rest_framework.generics import ListAPIView
 
-
-from .models import Rsids
-
+from .forms import RsidsForm ,UploadFileForm
+from .models import Rsids, User
+from .serializers import RsidsSerializer
+from rsid_search.scripts import litvar_api
+from subprocess import run, PIPE
+import sys
 
 class RsidDeleteView(DeleteView):
     model = Rsids
@@ -50,7 +55,6 @@ class RsidListView(LoginRequiredMixin, ListView):
     def get_queryset(self):
         return self.request.user.rsids.all()
 
-
 class RsidDetailView(DetailView):
     model = Rsids
     context_object_name = "rsid"
@@ -72,3 +76,19 @@ class RsidApiList(ListAPIView):
     queryset = Rsids.objects.all()
     serializer_class = RsidsSerializer
     permission_classes = [permissions.IsAuthenticated]
+
+
+
+def upload_file(request):
+    if request.method == 'POST':
+        form = UploadFileForm(request.POST, request.FILES)
+        file = request.FILES['file']
+        if form.is_valid():
+            out = run([sys.executable, "rsid_search/scripts/litvar_api.py", file, User],shell=False,stdout=PIPE)
+            
+    
+            return HttpResponse("THIS FILE: " + str(request.FILES['file']))
+    else:
+        print(form._errors)
+        form = UploadFileForm()
+    return render(request, 'list', {'form': form})

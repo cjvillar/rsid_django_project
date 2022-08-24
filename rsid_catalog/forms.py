@@ -1,10 +1,10 @@
+import re
 from dataclasses import field
 from xml.dom import ValidationErr
 from django import forms
-from .models import Rsids
 from django.core.exceptions import ValidationError
-import re
 
+from .models import Rsids
 
 class RsidsForm(forms.ModelForm):
     class Meta:
@@ -15,18 +15,12 @@ class RsidsForm(forms.ModelForm):
             "gene": forms.Textarea(attrs={"class": "form-control "}),
             "diseases": forms.Textarea(attrs={"class": "form-control"}),
         }
-        # labels = {
-        #     'rs_id': "Put rsID here:"
-        # }
-
+     
     def clean_rsid(self):
         rs_id = self.cleaned_data["rs_id"]
         if rs_id.startswith("rs"):
             return rs_id
         raise ValidationError('rsID must begin with "rs"')
 
-    # def clean_diseases(self):
-    #     disease = self.cleaned_data['diseases']
-    #     if disease != type(dict):
-    #         raise ValidationError('Disease must be a dictionary')
-    #     return disease
+class UploadFileForm(forms.Form):
+    file = forms.FileField()
